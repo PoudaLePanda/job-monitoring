@@ -1,36 +1,66 @@
-'use strict';
+"use strict";
 
 // Job-monitoring application dependencies
-var express = require('express');
+var express = require("express");
 var app = express();
-var path = require('path');
-var bodyParser = require('body-parser');
-var flash = require('connect-flash');
+var path = require("path");
+var bodyParser = require("body-parser");
+var flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
 
 // Job application components
-var routes = require('./app/routes');
-var session = require('./app/session');
-var passport = require('./app/auth');
-var ioServer = require('./app/socket')(app);
-var logger = require('./app/logger');
+var api = require("./app/api");
+var session = require("./app/session");
+var passport = require("./app/auth");
+var ioServer = require("./app/socket")(app);
+var logger = require("./app/logger");
 
 // Set the port number
 var port = process.env.PORT || 3000;
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jade");
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 // Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', routes);
+app.use("/api", api);
 
-// Middleware to catch 404 errors
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    res.status(404).sendFile(process.cwd());
+    var err = new Error("Not Found");
+    err.status = 404;
+    next(err);
 });
 
+// error handler
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
+});
+
+// START THE SERVER
+// =============================================================================
 ioServer.listen(port);
+console.log("Magic happens on port " + port);
