@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+@include mat-core();
+// ORANGE
+$monitor-app-primary: mat-palette($mat-grey, 800);
+$monitor-app-accent: mat-palette($mat-deep-orange, 900);
+$monitor-app-warn: mat-palette($mat-deep-orange);
+$monitor-app-light: mat-palette($mat-grey, 200);
+$monitor-app-theme: mat-light-theme($monitor-app-primary, $monitor-app-accent, $monitor-app-warn);
+@include angular-material-theme($monitor-app-theme);
+.monitor-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.monitor-card {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 15em;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+.spacer {
+    width: 100%;
+    height: 20px;
+}

@@ -1,53 +1,55 @@
-<main class="flex flex-column">
-    <header class="title-bar flex flex-row flex-center">
-        <div class="title-wrapper block center-element">
-            <img class="logo" src="http://feathersjs.com/img/feathers-logo-wide.png" alt="Feathers Logo">
-            <span class="title">Chat</span>
-        </div>
-    </header>
+<div class="monitor-container">
+    <main class="flex flex-column">
+        <header class="title-bar flex flex-row flex-center">
+            <div class="title-wrapper block center-element">
+                <img class="logo" src="http://feathersjs.com/img/feathers-logo-wide.png" alt="Feathers Logo">
+                <span class="title">Chat</span>
+            </div>
+        </header>
 
-    <div class="flex flex-row flex-1 clear">
-        <aside class="sidebar col col-3 flex flex-column flex-space-between" *ngIf="users$ | async as users">
-            <header class="flex flex-row flex-center">
-                <h4 class="font-300 text-center">
-                    <span class="font-600 online-count">{{users.length}}</span> users
-                </h4>
-            </header>
+        <div class="flex flex-row flex-1 clear">
+            <aside class="sidebar col col-3 flex flex-column flex-space-between" *ngIf="users$ | async as users">
+                <header class="flex flex-row flex-center">
+                    <h4 class="font-300 text-center">
+                        <span class="font-600 online-count">{{users.length}}</span> users
+                    </h4>
+                </header>
 
-            <ul class="flex flex-column flex-1 list-unstyled user-list">
-                <li *ngFor="let user of users">
-                    <a class="block relative" href="#">
-                        <img [src]="user.avatar" alt="" class="avatar">
-                        <span class="absolute username">{{user.email}}</span>
-                    </a>
-                </li>
-            </ul>
-            <footer class="flex flex-row flex-center">
-                <a href="#" id="logout" class="button button-primary" (click)="logOut()">
+                <ul class="flex flex-column flex-1 list-unstyled user-list">
+                    <li *ngFor="let user of users">
+                        <a class="block relative" href="#">
+                            <img [src]="user.avatar" alt="" class="avatar">
+                            <span class="absolute username">{{user.email}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <footer class="flex flex-row flex-center">
+                    <a href="#" id="logout" class="button button-primary" (click)="logOut()">
           Sign Out
         </a>
-            </footer>
-        </aside>
+                </footer>
+            </aside>
 
-        <div class="flex flex-column col col-9">
-            <main class="chat flex flex-column flex-1 clear" #chat [scrollTop]="chat.scrollHeight - chat.clientHeight">
-                <div class="job flex flex-row" *ngFor="let job of jobs$ | async">
-                    <div class="job-wrapper">
-                        <p class="job-header">
-                            <span class="username font-600">{{job.name}}</span>
-                            <span class="username font-600">{{job.status}}</span>
-                            <span class="sent-date font-300">{{job.createdAt | date:'MMM dd, hh:mm:ss'}}</span>
-                            <span class="sent-date font-300">{{job.updatedAt | date:'MMM dd, hh:mm:ss'}}</span>
-                        </p>
-                        <p class="job-content font-300">{{job.text}}</p>
+            <div class="flex flex-column col col-9">
+                <main class="chat flex flex-column flex-1 clear" #chat [scrollTop]="chat.scrollHeight - chat.clientHeight">
+                    <div class="job flex flex-row" *ngFor="let job of jobs$ | async">
+                        <div class="job-wrapper">
+                            <p class="job-header">
+                                <span class="username font-600">{{job.name}}</span>
+                                <span class="username font-600">{{job.status}}</span>
+                                <span class="sent-date font-300">{{job.createdAt | date:'MMM dd, hh:mm:ss'}}</span>
+                                <span class="sent-date font-300">{{job.updatedAt | date:'MMM dd, hh:mm:ss'}}</span>
+                            </p>
+                            <p class="job-content font-300">{{job.text}}</p>
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
 
-            <form class="flex flex-row flex-space-between" id="send-job">
-                <input #job type="text" name="text" class="flex flex-1">
-                <button class="button-primary" (click)="sendJob(job.value); job.value = ''">Send</button>
-            </form>
+                <form class="flex flex-row flex-space-between" id="send-job">
+                    <input #job type="text" name="text" class="flex flex-1">
+                    <button class="button-primary" (click)="sendJob(job.value); job.value = ''">Send</button>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
+</div>

@@ -1,31 +1,35 @@
-<main class="login container">
-  <div class="row">
-    <div class="col-12 col-6-tablet push-3-tablet text-center heading">
-      <h1 class="font-100">Log in or signup</h1>
+<div class="monitor-container">
+    <div class="monitor-card">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span>Log in</span>
+                <!-- <span> or signup</span> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-card class="mat-elevation-z8">
+            <form [formGroup]="loginForm">
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="email" type="email" name="email" placeholder="email" required>
+                    <mat-error *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine">
+                        <span [hidden]="!loginForm.controls['email'].errors.required">Email is required.</span>
+                        <span [hidden]="loginForm.controls['email'].errors.invalid">Email is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+                <div class="spacer"></div>
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="password" type="password" name="password" placeholder="password" required>
+                    <mat-error *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine">
+                        <span [hidden]="!loginForm.controls['password'].errors.required">Password is required.</span>
+                    </mat-error>
+                </mat-form-field>
+                <div class="center">
+                    <button [disabled]="loginForm.invalid" mat-raised-button color="accent" (click)="login()">Log in</button>
+                    <!-- <button mat-raised-button color="accent" id="signup" (click)="signup(email.value, password.value)">Signup</button> -->
+                </div>
+            </form>
+            <ul>
+                <li *ngFor="let message of messages">{{ message }}</li>
+            </ul>
+        </mat-card>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 col-6-tablet push-3-tablet col-4-desktop push-4-desktop">
-      <form class="form">
-        <fieldset>
-          <input #email class="block" type="email" name="email" placeholder="email">
-        </fieldset>
-
-        <fieldset>
-          <input #password class="block" type="password" name="password" placeholder="password">
-        </fieldset>
-
-        <button type="button" id="login" class="button button-primary block signup" (click)="login(email.value, password.value)">
-          Log in
-        </button>
-
-        <button type="button" id="signup" class="button button-primary block signup" (click)="signup(email.value, password.value)">
-          Signup
-        </button>
-      </form>
-      <ul>
-        <li *ngFor="let m of messages">{{m}}</li>
-      </ul>
-    </div>
-  </div>
-</main>
+</div>
