@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { JobComponent } from './components/job/job.component';
+import { ProxyComponent } from './components/proxy.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { MonitorComponent } from './components/monitor/monitor.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 /*
   Our app's routes.
@@ -11,21 +14,29 @@ import { LoginComponent } from './components/login/login.component';
 const routes: Routes = [
   {
     path: '',
+    component: ProxyComponent,
     children: [
+      // { path: '', redirectTo: 'welcome(sidenav:login)', pathMatch: 'full' },
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'job'
+        component: WelcomeComponent
       },
       {
-        path: 'job',
-        component: JobComponent,
+        path: '',
+        outlet: 'sidenav',
+        component: LoginComponent
+      },
+      {
+        path: 'dashboard',
+        component: MonitorComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'login',
-        component: LoginComponent
-      }
+        path: 'profile',
+        outlet: 'sidenav',
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
+      },
     ]
   }
 ];
@@ -34,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

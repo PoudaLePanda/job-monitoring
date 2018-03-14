@@ -1,0 +1,35 @@
+<div class="monitor-container">
+    <div class="monitor-card">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <span>Log in</span>
+                <!-- <span> or signup</span> -->
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-card class="mat-elevation-z8">
+            <form [formGroup]="loginForm">
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="email" type="email" name="email" placeholder="email" required>
+                    <mat-error *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].pristine">
+                        <span [hidden]="!loginForm.controls['email'].errors.required">Email is required.</span>
+                        <span [hidden]="loginForm.controls['email'].errors.invalid">Email is invalid.</span>
+                    </mat-error>
+                </mat-form-field>
+                <div class="spacer"></div>
+                <mat-form-field class="full-width">
+                    <input matInput formControlName="password" type="password" name="password" placeholder="password" required>
+                    <mat-error *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine">
+                        <span [hidden]="!loginForm.controls['password'].errors.required">Password is required.</span>
+                    </mat-error>
+                </mat-form-field>
+                <div class="center">
+                    <button [disabled]="loginForm.invalid" mat-raised-button color="accent" (click)="login()">Log in</button>
+                    <!-- <button mat-raised-button color="accent" id="signup" (click)="signup(email.value, password.value)">Signup</button> -->
+                </div>
+            </form>
+            <ul>
+                <li *ngFor="let message of messages">{{ message }}</li>
+            </ul>
+        </mat-card>
+    </div>
+</div>

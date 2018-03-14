@@ -1,0 +1,17 @@
+<div class="monitor-container" [class.monitor-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="monitor-toolbar">
+        <h1 class="monitor-app-name">Job Monitor</h1>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="monitor-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+
+        <mat-sidenav position="end" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+            <router-outlet name="sidenav"></router-outlet>
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>
