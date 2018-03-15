@@ -7,6 +7,11 @@ $monitor-app-warn: mat-palette($mat-deep-orange);
 $monitor-app-light: mat-palette($mat-grey, 200);
 $monitor-app-theme: mat-light-theme($monitor-app-primary, $monitor-app-accent, $monitor-app-warn);
 @include angular-material-theme($monitor-app-theme);
+// #2C3E50
+// #E74C3C
+// #ECF0F1
+// #3498DB
+// #2980B9
 .monitor-container {
     position: absolute;
     top: 0;

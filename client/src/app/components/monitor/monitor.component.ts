@@ -1,33 +1,26 @@
-import { Component } from '@angular/core';
-// import { Observable } from 'rxjs/Observable';
-// import { DataService } from '../../services/data.service';
-// import { AuthService } from '../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { visibilityChanged } from '../../router.animations';
 
 @Component({
   selector: 'app-monitor',
   templateUrl: './monitor.component.html',
   styleUrls: ['./monitor.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  animations: [visibilityChanged],
+  host: { '[@visibilityChanged]': '' }
 })
-export class MonitorComponent {
-  // jobs$: Observable<any[]>;
-  // users$: Observable<any[]>;
-  // constructor(
-  // private dataService: DataService,
-  // private authService: AuthService
-  // ) {
-  // this.jobs$ = dataService.jobs$()
-  //   .map(j => j.data)
-  //   .map(j => j.reverse());
-  // this.users$ = dataService.users$()
-  //   .map(u => u.data);
-  // }
+export class MonitorComponent implements OnInit {
 
-  // sendJob(job: any) {
-  //   this.dataService.sendJob(job);
-  // }
+  constructor(
+    private authService: AuthService
+  ) {
+  }
+
+  ngOnInit() {
+  }
+
 
   logOut() {
-    // this.authService.logOut();
+    this.authService.logOut();
   }
 }

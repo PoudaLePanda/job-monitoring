@@ -1,17 +1,22 @@
-<div class="monitor-container" [class.monitor-is-mobile]="mobileQuery.matches">
-    <mat-toolbar color="primary" class="monitor-toolbar">
-        <h1 class="monitor-app-name">Job Monitor</h1>
-        <span class="spacer"></span>
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    </mat-toolbar>
-
-    <mat-sidenav-container class="monitor-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-        <mat-sidenav-content>
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-
-        <mat-sidenav position="end" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-            <router-outlet name="sidenav"></router-outlet>
-        </mat-sidenav>
-    </mat-sidenav-container>
+<div class="background">
+    <div class="panel-background">
+        <router-outlet #o="outlet"></router-outlet>
+        <form [formGroup]="loginForm" (ngSubmit)="login($event)">
+            <div class="panel-top" [@paneltop]="getState(o)">
+                <div class="input-username">
+                    <input formControlName="username" type="text" placeholder="username" required>
+                </div>
+            </div>
+            <div class="panel-bottom" [@panelbottom]="getState(o)">
+                <div class="input-password">
+                    <input formControlName="password" type="password" placeholder="password" required>
+                </div>
+            </div>
+            <div class="panel-center" [@panelcenter]="getState(o)">
+                <div class="input-submit">
+                    <input type="submit" value="Login">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
