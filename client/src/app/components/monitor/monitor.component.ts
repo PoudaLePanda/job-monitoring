@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { visibilityChanged } from '../../router.animations';
+import { fadeIn } from '../../router.animations';
 
 @Component({
   selector: 'app-monitor',
   templateUrl: './monitor.component.html',
   styleUrls: ['./monitor.component.scss'],
-  animations: [visibilityChanged],
-  host: { '[@visibilityChanged]': '' }
+  animations: [fadeIn],
+  host: { '[@fadeIn]': '' }
 })
 export class MonitorComponent implements OnInit {
 

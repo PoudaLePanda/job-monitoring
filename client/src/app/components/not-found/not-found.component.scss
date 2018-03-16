@@ -1,12 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:500);
 .not-found-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    position: relative;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     background: radial-gradient(#666, #222);
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
 }
 
 .moving-zone {
@@ -56,8 +56,6 @@
 
 .popup-text {
     color: white;
-    font-family: 'Dosis', sans-serif;
-    font-size: 20px;
     line-height: 30px;
     font-weight: 100;
     text-align: center;

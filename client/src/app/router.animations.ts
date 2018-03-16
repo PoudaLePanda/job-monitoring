@@ -21,7 +21,7 @@ export const panelbottom = trigger('panelbottom', [
 ]);
 
 export const panelcenter = trigger('panelcenter', [
-  state("true", style({ transform: 'translateX(+100%)' })),
+  state("true", style({ transform: 'translateX(+110%)' })),
   state("false", style({ transform: 'translateY(0)' })),
   transition("false <=> true", animate('500ms ease-in-out'))
 ]);

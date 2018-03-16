@@ -37,4 +37,8 @@ export class ProxyComponent implements OnInit {
   getState(outlet) {
     return outlet.activatedRouteData.state;
   }
+
+  getRotation(outlet) {
+    return this.getState(outlet) ? {} : {'transform': 'rotate(-2deg)'};
+  }
 }

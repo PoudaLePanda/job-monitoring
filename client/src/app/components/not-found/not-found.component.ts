@@ -13,8 +13,11 @@ export class PageNotFoundComponent {
   rotateY: number;
 
   onMouseMove(event) {
-    var docX = event.clientX;
-    var docY = event.clientY;
+    var docX = event.view.innerHeight;
+    var docY = event.view.innerWidth;
+
+    // var docX = event.clientX;
+    // var docY = event.clientY;
 
     this.moveX = (event.pageX - docX / 2) / (docX / 2) * - this.moveForce;
     this.moveY = (event.pageY - docY / 2) / (docY / 2) * - this.moveForce;

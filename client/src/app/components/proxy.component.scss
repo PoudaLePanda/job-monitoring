@@ -1,52 +1,48 @@
-.login-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    font-size: 100%;
-    font-family: 'Dosis', sans-serif;
-    overflow: hidden;
-}
-
 .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: #ECF0F1;
-    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
-.panel-background {}
+.panel-background {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: all .1s linear;
+    -o-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -ms-transition: all .1s linear;
+    -kthtml-transition: all .1s linear;
+    transition: all .1s linear;
+}
 
 .panel-top {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -100px;
+    left: -100px;
     bottom: calc(50% + 5px);
-    right: 0;
+    right: -100px;
     background-color: #2C3E50;
 }
 
 .panel-bottom {
     position: absolute;
     top: calc(50% + 5px);
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: #2C3E50;
+    left: -100px;
+    bottom: -100px;
+    right: -100px;
+    background-color: #E74C3C;
 }
 
 .panel-center {
     position: absolute;
-    right: 0;
+    right: -100px;
     width: calc(50% - 150px);
     top: calc(50% - 25px);
 }
 
 .input-username {
+    color: #ECF0F1;
     width: 300px;
     position: absolute;
     bottom: 0;
@@ -54,6 +50,7 @@
 }
 
 .input-password {
+    color: #ECF0F1;
     width: 300px;
     position: relative;
     top: 0;
@@ -150,4 +147,59 @@ input[type="submit"]::-moz-focus-inner {
 
 input:focus {
     outline: 0;
+}
+
+@keyframes titleborderslidein {
+    from {
+        transform: translateX(-150px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rollin {
+    from {
+        transform: rotateX(-90deg);
+        opacity: 1;
+    }
+    to {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+.title {
+    position: relative;
+    perspective: 400;
+    padding-left: 17px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 52px;
+    text-transform: uppercase;
+    color: #ECF0F1;
+    margin: 0 auto;
+    width: 400px;
+    margin-top: 150px;
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 6px;
+        background: lighten(#E74C3C, 7%);
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transform: translateX(-150px);
+        animation: titleborderslidein 1.35s ease-out forwards;
+    }
+    .title-word {
+        opacity: 0;
+        transform-origin: bottom center;
+        transform: rotateX(-90deg);
+        animation: rollin 1.15s .175s ease-out forwards;
+    }
 }
